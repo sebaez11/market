@@ -1,6 +1,6 @@
 package com.platzi.market.persistence;
 
-import com.platzi.market.persistence.crud.IProductoCrudRepository;
+import com.platzi.market.persistence.crud.ProductoCrudRepository;
 import com.platzi.market.persistence.entities.Producto;
 import org.springframework.stereotype.Repository;
 
@@ -9,30 +9,30 @@ import java.util.Optional;
 
 @Repository
 public class ProductoRepository {
-    private IProductoCrudRepository iProductoCrudRepository;
+    private ProductoCrudRepository productoCrudRepository;
 
     public List<Producto> getAll(){
-        return (List<Producto>) iProductoCrudRepository.findAll();
+        return (List<Producto>) productoCrudRepository.findAll();
     }
 
     public List<Producto> getByCategoria(int idCategoria){
-        return iProductoCrudRepository.findByIdCategoriaOrderByNombreAsc(idCategoria);
+        return productoCrudRepository.findByIdCategoriaOrderByNombreAsc(idCategoria);
     }
 
     public Optional<List<Producto>> getEscasos(int cantidad){
-        return iProductoCrudRepository.findByCantidadStockLessThanAndEstado(cantidad , true);
+        return productoCrudRepository.findByCantidadStockLessThanAndEstado(cantidad , true);
     }
 
     public Optional<Producto> getProducto(int idProducto){
-        return iProductoCrudRepository.findById(idProducto);
+        return productoCrudRepository.findById(idProducto);
     }
 
     public Producto save(Producto producto){
-        return iProductoCrudRepository.save(producto);
+        return productoCrudRepository.save(producto);
     }
 
     public void delete(int idProducto){
-        iProductoCrudRepository.deleteById(idProducto);
+        productoCrudRepository.deleteById(idProducto);
     }
 
 }
